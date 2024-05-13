@@ -1,19 +1,17 @@
-const state = {
-  ipcMap: Object.create(null),
-}
+const ipcMap = Object.create(null)
 
 export const add = (id, ipc) => {
-  state.ipcMap[id] = ipc
+  ipcMap[id] = ipc
 }
 
 export const get = (id) => {
-  return state.ipcMap[id]
+  return ipcMap[id]
 }
 
 export const remove = (id) => {
-  delete state.ipcMap[id]
+  delete ipcMap[id]
 }
 
 export const getAll = () => {
-  return Object.entries(state.ipcMap)
+  return Object.entries(ipcMap)
 }
