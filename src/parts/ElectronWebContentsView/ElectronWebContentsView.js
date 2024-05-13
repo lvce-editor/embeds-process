@@ -4,27 +4,13 @@ import * as ElectronWebContentsViewIpcState from '../ElectronWebContentsViewIpcS
 import * as JsonRpc from '../JsonRpc/JsonRpc.js'
 import * as ParentIpc from '../ParentIpc/ParentIpc.js'
 
-export const createWebContentsView = async (
-  ipc,
-  restoreId,
-  fallthroughKeyBindings,
-) => {
+export const createWebContentsView = async (ipc, restoreId, fallthroughKeyBindings) => {
   Assert.number(restoreId)
-  const webContentsId = await ParentIpc.invoke(
-    'ElectronWebContentsView.createWebContentsView',
-    restoreId,
-  )
+  const webContentsId = await ParentIpc.invoke('ElectronWebContentsView.createWebContentsView', restoreId)
   ElectronWebContentsViewIpcState.add(webContentsId, ipc)
   // TODO get window id from renderer worker
-  await ParentIpc.invoke(
-    'ElectronWebContentsView.attachEventListeners',
-    webContentsId,
-  )
-  await ParentIpc.invoke(
-    'ElectronWebContentsViewFunctions.setBackgroundColor',
-    webContentsId,
-    'white',
-  )
+  await ParentIpc.invoke('ElectronWebContentsView.attachEventListeners', webContentsId)
+  await ParentIpc.invoke('ElectronWebContentsViewFunctions.setBackgroundColor', webContentsId, 'white')
   return webContentsId
 }
 
@@ -34,35 +20,23 @@ export const disposeWebContentsView = async (id) => {
 }
 
 export const resizeWebContentsView = async (id, ...args) => {
-  return ParentIpc.invoke(
-    'ElectronWebContentsViewFunctions.resizeBrowserView',
-    id,
-    ...args,
-  )
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.resizeBrowserView', id, ...args)
 }
 
 export const setIframeSrc = async (id, ...args) => {
-  return ParentIpc.invoke(
-    'ElectronWebContentsViewFunctions.setIframeSrc',
-    id,
-    ...args,
-  )
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.setIframeSrc', id, ...args)
 }
 
 export const setIframeSrcFallback = async (id, ...args) => {
-  return ParentIpc.invoke(
-    'ElectronWebContentsViewFunctions.setIframeSrcFallback',
-    id,
-    ...args,
-  )
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.setIframeSrcFallback', id, ...args)
+}
+
+export const setFallthroughKeyBindings = async (id, ...args) => {
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.setFallthroughKeyBindings', id, ...args)
 }
 
 export const getStats = async (id, ...args) => {
-  return ParentIpc.invoke(
-    'ElectronWebContentsViewFunctions.getStats',
-    id,
-    ...args,
-  )
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.getStats', id, ...args)
 }
 
 export const show = async (id, ...args) => {
@@ -79,21 +53,15 @@ const forwardIpcEvent =
     JsonRpc.send(ipc, key, id, ...args)
   }
 
-export const handleDidNavigate = forwardIpcEvent(
-  'ElectronWebContentsView.handleDidNavigate',
-)
+export const handleDidNavigate = forwardIpcEvent('ElectronWebContentsView.handleDidNavigate')
 
-export const handleTitleUpdated = forwardIpcEvent(
-  'ElectronWebContentsView.handleTitleUpdated',
-)
+export const handleTitleUpdated = forwardIpcEvent('ElectronWebContentsView.handleTitleUpdated')
 
-export const handleWillNavigate = forwardIpcEvent(
-  'ElectronWebContentsView.handleWillNavigate',
-)
+export const handleWillNavigate = forwardIpcEvent('ElectronWebContentsView.handleWillNavigate')
 
-export const handleContextMenu = forwardIpcEvent(
-  'ElectronWebContentsView.handleContextMenu',
-)
+export const handleContextMenu = forwardIpcEvent('ElectronWebContentsView.handleContextMenu')
+
+export const handleKeyBinding = forwardIpcEvent('ElectronWebContentsView.handleKeyBinding')
 
 export const handleBrowserViewDestroyed = (id, ...args) => {
   // TODO send to embeds worker?

@@ -15,6 +15,7 @@ export const commandMap = {
   'ElectronWebContentsView.resizeBrowserView': ElectronWebContentsView.resizeWebContentsView,
   'ElectronWebContentsView.setIframeSrc': ElectronWebContentsView.setIframeSrc,
   'ElectronWebContentsView.setIframeSrcFallback': ElectronWebContentsView.setIframeSrcFallback,
+  'ElectronWebContentsView.setFallthroughKeyBindings': ElectronWebContentsView.setFallthroughKeyBindings,
   'ElectronWebContentsView.show': ElectronWebContentsView.show,
   'ElectronWebContents.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
   'ElectronWebContents.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
