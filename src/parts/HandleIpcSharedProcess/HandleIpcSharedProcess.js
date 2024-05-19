@@ -5,6 +5,7 @@ import * as SharedProcessIpc from '../SharedProcessIpc/SharedProcessIpc.js'
 
 export const targetMessagePort = async (messagePort, message) => {
   Assert.object(messagePort)
+  // TODO don't listen directly, return type 'listen' and type 'set' with parameters
   const ipc = await IpcChild.listen({
     method: IpcChildType.ElectronMessagePort,
     messagePort,
