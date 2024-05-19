@@ -71,7 +71,7 @@ export const handleKeyBinding = (...args) => {
   forwardEvent('handleKeyBinding', ...args)
 }
 
-export const handleBrowserViewDestroyed = (id) => {
+export const handleWebContentsViewDestroyed = (id) => {
   ElectronWebContentsViewState.remove(id)
   ElectronWebContentsViewIpcState.remove(id)
 }
