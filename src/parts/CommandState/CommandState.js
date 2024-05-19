@@ -15,3 +15,7 @@ export const registerCommands = (commandMap) => {
 export const getCommand = (key) => {
   return state.commands[key]
 }
+
+export const reset = () => {
+  state.commands = Object.create(null)
+}
