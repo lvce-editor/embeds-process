@@ -1,15 +1,13 @@
-const state = {
-  browserViews: Object.create(null),
-}
+const webContentViews = Object.create(null)
 
 export const add = (id) => {
-  state.browserViews[id] = id
+  webContentViews[id] = id
 }
 
 export const remove = (id) => {
-  delete state.browserViews[id]
+  delete webContentViews[id]
 }
 
 export const getAll = () => {
-  return Object.values(state.browserViews)
+  return Object.values(webContentViews)
 }
