@@ -1,5 +1,5 @@
-import * as ElectronBrowserViewIpcState from '../ElectronWebContentsViewIpcState/ElectronWebContentsViewIpcState.js'
-import * as ElectronBrowserViewState from '../ElectronBrowserViewState/ElectronBrowserViewState.js'
+import * as ElectronWebContentsViewIpcState from '../ElectronWebContentsViewIpcState/ElectronWebContentsViewIpcState.js'
+import * as ElectronWebContentsViewState from '../ElectronWebContentsViewState/ElectronWebContentsViewState.js'
 import * as ParentIpc from '../ParentIpc/ParentIpc.js'
 
 export const dispose = async (id) => {
@@ -39,7 +39,7 @@ export const handleWindowOpen = (webContentsId, url) => {
 }
 
 const forwardEvent = (method, webContentsId, ...params) => {
-  const ipc = ElectronBrowserViewIpcState.get(webContentsId)
+  const ipc = ElectronWebContentsViewIpcState.get(webContentsId)
   if (!ipc) {
     console.log(`[shared-process] no ipc for webcontents ${webContentsId}`)
     return
@@ -72,6 +72,6 @@ export const handleKeyBinding = (...args) => {
 }
 
 export const handleBrowserViewDestroyed = (id) => {
-  ElectronBrowserViewState.remove(id)
-  ElectronBrowserViewIpcState.remove(id)
+  ElectronWebContentsViewState.remove(id)
+  ElectronWebContentsViewIpcState.remove(id)
 }
