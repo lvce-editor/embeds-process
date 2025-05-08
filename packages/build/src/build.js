@@ -56,20 +56,7 @@ await bundleJs()
 
 const version = await getVersion()
 
-const packageJson = await readJson(join(root, 'packages', 'search-process', 'package.json'))
-
-const getWsVersion = async () => {
-  const { stdout } = await execa('npm', ['ls', 'ws', '--json'], {
-    cwd: join(root, 'packages', 'search-process'),
-  })
-  const parsed = JSON.parse(stdout)
-  const wsVersion =
-    parsed.dependencies['@lvce-editor/rpc'].dependencies['@lvce-editor/ipc'].dependencies['@lvce-editor/web-socket-server']
-      .dependencies['ws'].version
-  return wsVersion
-}
-
-const wsVersion = await getWsVersion()
+const packageJson = await readJson(join(root, 'packages', 'embeds-process', 'package.json'))
 
 delete packageJson.scripts
 delete packageJson.devDependencies
@@ -81,18 +68,17 @@ delete packageJson.nodemonConfig
 delete packageJson.dependencies['@lvce-editor/assert']
 delete packageJson.dependencies['@lvce-editor/rpc']
 delete packageJson.dependencies['@lvce-editor/verror']
-packageJson.dependencies['ws'] = `^${wsVersion}`
 packageJson.version = version
-packageJson.main = 'dist/index.js'
+packageJson.main = 'dist/embedsProcessMain.js'
 
 await writeJson(join(dist, 'package.json'), packageJson)
 
 await mkdir(join(dist, 'bin'))
 await writeFile(
-  join(dist, 'bin', 'searchProcess.js'),
+  join(dist, 'bin', 'embedsProcess.js'),
   `#!/usr/bin/env node
 
-import '../dist/index.js'
+import '../dist/embedsProcessMain.js'
 `,
 )
 
