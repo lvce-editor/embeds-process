@@ -1,9 +1,14 @@
 import * as ElectronWebContentsViewIpcState from '../ElectronWebContentsViewIpcState/ElectronWebContentsViewIpcState.js'
 import * as ElectronWebContentsViewState from '../ElectronWebContentsViewState/ElectronWebContentsViewState.js'
 import * as ParentIpc from '../ParentIpc/ParentIpc.js'
+import { VError } from '../VError/VError.js'
 
 export const dispose = async (id) => {
-  await ParentIpc.invoke('ElectronWebContents.dispose', id)
+  try {
+    await ParentIpc.invoke('ElectronWebContents.dispose', id)
+  } catch (error) {
+    throw new VError(error, `Failed to dispose webcontents`)
+  }
 }
 
 export const callFunction = (webContentsId, method, ...params) => {
