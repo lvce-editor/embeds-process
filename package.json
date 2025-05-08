@@ -82,7 +82,7 @@
     "@lvce-editor/ipc": "^14.1.0",
     "@lvce-editor/json-rpc": "^5.4.0",
     "@lvce-editor/rpc": "^3.4.0",
-    "@lvce-editor/rpc-registry": "^2.9.0",
+    "@lvce-editor/rpc-registry": "^2.10.0",
     "@lvce-editor/verror": "^1.6.0"
   },
   "devDependencies": {
