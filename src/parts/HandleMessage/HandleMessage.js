@@ -11,7 +11,7 @@ const requiresSocket = (method) => {
 }
 
 const logError = (error, prettyError) => {
-  console.error(error)
+  // handled by shared process
 }
 
 export const handleMessage = (event) => {
