@@ -14,6 +14,6 @@ export const getModule = (ipcId) => {
     case IpcId.MainProcess:
       return HandleIpcMainProcess
     default:
-      throw new Error(`unexpected incoming ipc`)
+      throw new Error(`Embeds process encountered unexpected incoming ipc ${ipcId}`)
   }
 }
