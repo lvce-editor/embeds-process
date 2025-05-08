@@ -9,13 +9,13 @@ import { root } from './root.js'
  * @type {import('rollup').RollupOptions}
  */
 const options = {
-  input: join(root, 'packages/search-process/src/searchProcessMain.ts'),
+  input: join(root, 'packages/embeds-process/src/embedsProcessMain.ts'),
   preserveEntrySignatures: 'strict',
   treeshake: {
     propertyReadSideEffects: false,
   },
   output: {
-    file: join(root, '.tmp/dist/dist/index.js'),
+    file: join(root, '.tmp/dist/dist/embedsProcessMain.js'),
     format: 'es',
     freeze: false,
     generatedCode: {
@@ -24,7 +24,7 @@ const options = {
     },
     inlineDynamicImports: true,
   },
-  external: ['@lvce-editor/ripgrep', 'electron', 'execa', 'ws'],
+  external: ['electron', 'execa', 'ws'],
   plugins: [
     babel({
       babelHelpers: 'bundled',

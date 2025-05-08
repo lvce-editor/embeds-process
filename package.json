@@ -12,7 +12,9 @@
     "test:watch": "node --unhandled-rejections=warn --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch",
     "lint": "eslint .",
     "postinstall": "lerna bootstrap --ci",
-    "type-check": "tsc -b"
+    "type-check": "tsc -b",
+    "build": "node packages/build/src/build.js",
+    "build:watch": ""
   },
   "keywords": [],
   "author": "",
