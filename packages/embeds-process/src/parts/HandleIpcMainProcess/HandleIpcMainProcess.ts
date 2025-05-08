@@ -5,13 +5,12 @@ import * as ParentIpc from '../ParentIpc/ParentIpc.ts'
 
 export const targetMessagePort = async (messagePort: any, message: any) => {
   Assert.object(messagePort)
-  const ipc = await IpcChild.listen({
+  const rpc = await IpcChild.listen({
     method: IpcChildType.ElectronMessagePort,
     messagePort,
   })
-  // @ts-ignore
-  ParentIpc.state.ipc = ipc
-  return ipc
+  ParentIpc.set(rpc)
+  return rpc
 }
 
 export const upgradeMessagePort = () => {
