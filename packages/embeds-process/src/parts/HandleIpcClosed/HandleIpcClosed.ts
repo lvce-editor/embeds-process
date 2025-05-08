@@ -7,7 +7,7 @@ const getIdsToDispose = (ipc: any) => {
 
   for (const [id, value] of entries) {
     if (value === ipc) {
-      toDispose.push(parseInt(id))
+      toDispose.push(Number.parseInt(id))
     }
   }
   return toDispose
