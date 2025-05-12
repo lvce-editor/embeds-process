@@ -16,6 +16,7 @@ export const commandMap = {
   'ElectronWebContentsView.getDomTree': ElectronWebContentsView.getDomTree,
   'ElectronWebContentsView.getStats': ElectronWebContentsView.getStats,
   'ElectronWebContentsView.handleKeyBinding': ElectronWebContentsView.handleKeyBinding,
+  'ElectronWebContentsView.insertCss': ElectronWebContentsView.insertCss,
   'ElectronWebContentsView.inspectElement': ElectronWebContents.inspectElement,
   'ElectronWebContentsView.openDevtools': ElectronWebContents.openDevtools,
   'ElectronWebContentsView.reload': ElectronWebContents.reload,
