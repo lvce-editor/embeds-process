@@ -39,6 +39,11 @@ export const getStats = async (id: any, ...args: readonly any[]) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.getStats', id, ...args)
 }
 
+export const getDomTree = async (id: any) => {
+  // @ts-ignore
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.getDomTree', id)
+}
+
 export const show = async (id: any, ...args: readonly any[]) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.show', id, ...args)
 }
