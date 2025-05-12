@@ -49,6 +49,11 @@ export const insertCss = async (id: any, css: string) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.insertCss', id, css)
 }
 
+export const insertJavaScript = async (id: any, css: string) => {
+  // @ts-ignore
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.insertJavaScript', id, css)
+}
+
 export const show = async (id: any, ...args: readonly any[]) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.show', id, ...args)
 }
