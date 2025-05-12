@@ -44,9 +44,9 @@ export const getDomTree = async (id: any) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.getDomTree', id)
 }
 
-export const insertCss = async (id: any) => {
+export const insertCss = async (id: any, css: string) => {
   // @ts-ignore
-  return ParentIpc.invoke('ElectronWebContentsViewFunctions.insertCss', id)
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.insertCss', id, css)
 }
 
 export const show = async (id: any, ...args: readonly any[]) => {
