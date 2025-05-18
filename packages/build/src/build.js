@@ -70,6 +70,7 @@ delete packageJson.dependencies['@lvce-editor/rpc']
 delete packageJson.dependencies['@lvce-editor/verror']
 delete packageJson.dependencies['@lvce-editor/rpc-registry']
 delete packageJson.dependencies['@lvce-editor/execa']
+delete packageJson.dependencies['electron']
 packageJson.version = version
 packageJson.main = 'dist/embedsProcessMain.js'
 
