@@ -1,7 +1,7 @@
 import * as Assert from '../Assert/Assert.ts'
 import * as ElectronWebContents from '../ElectronWebContents/ElectronWebContents.ts'
 import * as ElectronWebContentsViewIpcState from '../ElectronWebContentsViewIpcState/ElectronWebContentsViewIpcState.ts'
-import * as ParentIpc from '../ParentIpc/ParentIpc.ts'
+import * as ParentIpc from '../MainProcess/MainProcess.ts'
 
 export const createWebContentsView = async (ipcId: any, restoreId: any, fallthroughKeyBindings: any) => {
   Assert.number(restoreId)
