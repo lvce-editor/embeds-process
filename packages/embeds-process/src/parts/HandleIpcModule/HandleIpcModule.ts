@@ -10,6 +10,7 @@ export const getModule = (ipcId: any) => {
     case IpcId.SharedProcess:
       return HandleIpcSharedProcess
     case IpcId.EmbedsWorker:
+    case IpcId.EmbedsWorkerAlt:
       return HandleIpcEmbedsWorker
     case IpcId.MainProcess:
       return HandleIpcMainProcess
