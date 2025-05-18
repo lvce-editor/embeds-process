@@ -15,4 +15,10 @@ export default [
       'no-console': 'off',
     },
   },
+  {
+    rules: {
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/prefer-readonly-parameter-types': 'off',
+    },
+  },
 ]

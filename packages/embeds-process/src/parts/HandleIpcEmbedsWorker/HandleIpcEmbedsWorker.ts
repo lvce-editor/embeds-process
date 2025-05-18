@@ -12,7 +12,7 @@ export const targetMessagePort = async (messagePort: any, message: any) => {
     commandMap: CommandMapRef.commandMapRef,
   })
   // @ts-ignore
-  const ipc = rpc.ipc
+  const { ipc } = rpc
   ipc.addEventListener('close', HandleIpcClosed.handleIpcClosed)
   return rpc
 }

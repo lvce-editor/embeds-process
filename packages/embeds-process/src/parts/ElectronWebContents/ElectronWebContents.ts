@@ -46,6 +46,7 @@ export const handleWindowOpen = (webContentsId: any, url: any) => {
 const forwardEvent = (method: any, webContentsId: any, ...params: readonly any[]) => {
   const ipc = ElectronWebContentsViewIpcState.get(webContentsId)
   if (!ipc) {
+    // eslint-disable-next-line  no-console
     console.log(`[shared-process] no ipc for webcontents ${webContentsId}`)
     return
   }
