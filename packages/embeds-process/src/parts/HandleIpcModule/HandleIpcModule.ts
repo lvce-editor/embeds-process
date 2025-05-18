@@ -4,16 +4,16 @@ import * as HandleIpcMainProcess from '../HandleIpcMainProcess/HandleIpcMainProc
 import * as HandleIpcSharedProcess from '../HandleIpcSharedProcess/HandleIpcSharedProcess.ts'
 import * as IpcId from '../IpcId/IpcId.ts'
 
-export const getModule = (ipcId: any) => {
+export const getModule = (ipcId: number) => {
   Assert.number(ipcId)
   switch (ipcId) {
     case IpcId.SharedProcess:
-      return HandleIpcSharedProcess
+      return HandleIpcSharedProcess // deprecated
     case IpcId.EmbedsWorker:
     case IpcId.EmbedsWorkerAlt:
       return HandleIpcEmbedsWorker
     case IpcId.MainProcess:
-      return HandleIpcMainProcess
+      return HandleIpcMainProcess // deprecated
     default:
       throw new Error(`Embeds process encountered unexpected incoming ipc ${ipcId}`)
   }
