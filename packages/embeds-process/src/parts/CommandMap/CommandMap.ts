@@ -1,6 +1,7 @@
 import * as ElectronWebContents from '../ElectronWebContents/ElectronWebContents.ts'
 import * as ElectronWebContentsView from '../ElectronWebContentsView/ElectronWebContentsView.ts'
 import * as HandleElectronMessagePort from '../HandleElectronMessagePort/HandleElectronMessagePort.ts'
+import * as Initialize from '../Initialize/Initialize.ts'
 
 export const commandMap = {
   'ElectronWebContents.handleBrowserViewDestroyed': ElectronWebContentsView.handleBrowserViewDestroyed,
@@ -27,4 +28,5 @@ export const commandMap = {
   'ElectronWebContentsView.setIframeSrcFallback': ElectronWebContentsView.setIframeSrcFallback,
   'ElectronWebContentsView.show': ElectronWebContentsView.show,
   'HandleElectronMessagePort.handleElectronMessagePort': HandleElectronMessagePort.handleElectronMessagePort,
+  'Initialize.initialize': Initialize.initialize,
 }
