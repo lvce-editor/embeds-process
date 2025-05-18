@@ -1,6 +1,6 @@
 import * as ElectronWebContentsViewIpcState from '../ElectronWebContentsViewIpcState/ElectronWebContentsViewIpcState.ts'
 import * as ElectronWebContentsViewState from '../ElectronWebContentsViewState/ElectronWebContentsViewState.ts'
-import * as ParentIpc from '../ParentIpc/ParentIpc.ts'
+import * as ParentIpc from '../MainProcess/MainProcess.ts'
 import { VError } from '../VError/VError.ts'
 
 export const dispose = async (id: any): Promise<void> => {
