@@ -1,7 +1,6 @@
 {
   "name": "@lvce-editor/embeds-process-monorepo",
   "version": "0.0.0-dev",
-  "description": "",
   "license": "MIT",
   "type": "module",
   "directories": {
@@ -9,8 +8,8 @@
   },
   "scripts": {
     "build": "node packages/build/src/build.js",
-    "lint": "eslint .",
     "postinstall": "lerna bootstrap --ci",
+    "lint": "eslint .",
     "test": "lerna run test",
     "type-check": "tsc -b"
   },
@@ -20,11 +19,11 @@
     "printWidth": 150
   },
   "devDependencies": {
-    "@lerna/legacy-package-management": "^8.2.3",
-    "@lvce-editor/eslint-config": "^1.52.0",
-    "eslint": "^9.30.1",
+    "@lerna/legacy-package-management": "^8.2.4",
+    "@lvce-editor/eslint-config": "^1.64.0",
+    "eslint": "^9.36.0",
     "lerna": "^8.2.3",
     "prettier": "^3.6.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   }
 }
