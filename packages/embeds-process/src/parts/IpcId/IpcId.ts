@@ -5,6 +5,7 @@ export const MainProcess = -5
 export const ProcessExplorer = 11
 export const SearchProcess = 13
 export const SharedProcess = 1
+export const SharedProcessAlt = 1492
 export const TerminalProcess = 7
 export const Unknown = 0
 export const EmbedsWorkerAlt = 208
