@@ -6,7 +6,7 @@ import * as IpcChildType from '../IpcChildType/IpcChildType.ts'
 export const listen = async (argv: readonly string[]): Promise<void> => {
   Object.assign(CommandMapRef.commandMapRef, CommandMap.commandMap)
   await IpcChild.listen({
-    method: IpcChildType.Auto(argv),
     commandMap: CommandMap.commandMap,
+    method: IpcChildType.Auto(argv),
   })
 }

@@ -6,8 +6,8 @@ import * as SharedProcessIpc from '../SharedProcessIpc/SharedProcessIpc.ts'
 export const targetMessagePort = async (messagePort: any, message: any) => {
   Assert.object(messagePort)
   const rpc = await ElectronMessagePortRpcClient.create({
-    messagePort,
     commandMap: CommandMapRef.commandMapRef,
+    messagePort,
   })
   SharedProcessIpc.set(rpc)
   return rpc

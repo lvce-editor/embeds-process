@@ -7,9 +7,9 @@ import * as IpcChildType from '../IpcChildType/IpcChildType.ts'
 export const targetMessagePort = async (messagePort: any, message: any) => {
   Assert.object(messagePort)
   const rpc = await IpcChild.listen({
-    method: IpcChildType.ElectronMessagePort,
-    messagePort,
     commandMap: CommandMapRef.commandMapRef,
+    messagePort,
+    method: IpcChildType.ElectronMessagePort,
   })
   // @ts-ignore
   const { ipc } = rpc

@@ -6,8 +6,8 @@ import * as ParentIpc from '../MainProcess/MainProcess.ts'
 export const targetMessagePort = async (messagePort: any, message: any) => {
   Assert.object(messagePort)
   const rpc = await IpcChild.listen({
-    method: IpcChildType.ElectronMessagePort,
     messagePort,
+    method: IpcChildType.ElectronMessagePort,
   })
   ParentIpc.set(rpc)
   return rpc
