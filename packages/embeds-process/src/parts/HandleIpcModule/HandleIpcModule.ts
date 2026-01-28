@@ -13,6 +13,7 @@ export const getModule = (ipcId: number) => {
     case IpcId.MainProcess:
       return HandleIpcMainProcess // deprecated
     case IpcId.SharedProcess:
+    case IpcId.SharedProcessAlt:
       return HandleIpcSharedProcess // deprecated
     default:
       throw new Error(`Embeds process encountered unexpected incoming ipc ${ipcId}`)
