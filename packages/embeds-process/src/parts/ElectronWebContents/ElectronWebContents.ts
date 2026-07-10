@@ -1,3 +1,4 @@
+// cspell:ignore webcontents
 import * as ElectronWebContentsViewIpcState from '../ElectronWebContentsViewIpcState/ElectronWebContentsViewIpcState.ts'
 import * as ElectronWebContentsViewState from '../ElectronWebContentsViewState/ElectronWebContentsViewState.ts'
 import * as ParentIpc from '../MainProcess/MainProcess.ts'
