@@ -24,6 +24,10 @@ export const resizeWebContentsView = async (id: any, ...args: readonly any[]) =>
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.resizeBrowserView', id, ...args)
 }
 
+export const capturePage = async (id: any) => {
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.capturePage', id)
+}
+
 export const setIframeSrc = async (id: any, ...args: readonly any[]) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.setIframeSrc', id, ...args)
 }
@@ -57,6 +61,10 @@ export const insertJavaScript = async (id: any, css: string) => {
 
 export const show = async (id: any, ...args: readonly any[]) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.show', id, ...args)
+}
+
+export const hide = async (id: any, ...args: readonly any[]) => {
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.hide', id, ...args)
 }
 
 const forwardIpcEvent =
