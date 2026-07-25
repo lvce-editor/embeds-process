@@ -3,14 +3,16 @@
   "version": "0.0.0-dev",
   "license": "MIT",
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "directories": {
     "test": "test"
   },
   "scripts": {
     "build": "node packages/build/src/build.js",
-    "postinstall": "lerna bootstrap --ci",
     "lint": "eslint .",
-    "test": "lerna run test",
+    "test": "npm test --workspaces --if-present",
     "type-check": "tsc -b"
   },
   "prettier": {
@@ -19,10 +21,8 @@
     "printWidth": 150
   },
   "devDependencies": {
-    "@lerna/legacy-package-management": "^8.2.4",
     "@lvce-editor/eslint-config": "^17.0.3",
     "eslint": "^10.7.0",
-    "lerna": "^8.2.3",
     "prettier": "^3.8.1",
     "typescript": "^6.0.0"
   }
