@@ -13,11 +13,11 @@ const getIdsToDispose = (ipc: any) => {
   return toDispose
 }
 
-export const handleIpcClosed = async (event: any) => {
+export const handleIpcClosed = async (event: any, disposeWebContentsView = ElectronWebContentsView.disposeWebContentsView) => {
   const idsToDispose = getIdsToDispose(event.target)
   for (const id of idsToDispose) {
     ElectronWebContentsViewIpcState.remove(id)
-    await ElectronWebContentsView.disposeWebContentsView(id)
+    await disposeWebContentsView(id)
   }
   // SharedProcessIpc.send('HandleMessagePortForEmbedsProcess.handleEmbedsProcessIpcClosed')
 }
