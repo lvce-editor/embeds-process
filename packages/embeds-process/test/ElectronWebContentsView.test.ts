@@ -34,3 +34,15 @@ test('hide forwards to the main process', async () => {
 
   expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.hide', 12]])
 })
+
+test('acceptLogin forwards credentials to the main process', async () => {
+  await ElectronWebContentsView.acceptLogin('12:1', 'admin', 'secret')
+
+  expect(state.invocations).toEqual([['ElectronWebContentsView.acceptLogin', '12:1', 'admin', 'secret']])
+})
+
+test('cancelLogin forwards the challenge to the main process', async () => {
+  await ElectronWebContentsView.cancelLogin('12:1')
+
+  expect(state.invocations).toEqual([['ElectronWebContentsView.cancelLogin', '12:1']])
+})

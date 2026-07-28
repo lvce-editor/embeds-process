@@ -20,6 +20,14 @@ export const disposeWebContentsView = async (id: any) => {
   await ElectronWebContents.dispose(id)
 }
 
+export const acceptLogin = async (requestId: string, username: string, password: string) => {
+  return ParentIpc.invoke('ElectronWebContentsView.acceptLogin', requestId, username, password)
+}
+
+export const cancelLogin = async (requestId: string) => {
+  return ParentIpc.invoke('ElectronWebContentsView.cancelLogin', requestId)
+}
+
 export const resizeWebContentsView = async (id: any, ...args: readonly any[]) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.resizeBrowserView', id, ...args)
 }
@@ -86,6 +94,8 @@ export const handleWillNavigate = forwardIpcEvent('ElectronWebContentsView.handl
 export const handleContextMenu = forwardIpcEvent('ElectronWebContentsView.handleContextMenu')
 
 export const handleKeyBinding = forwardIpcEvent('ElectronWebContentsView.handleKeyBinding')
+
+export const handleLogin = forwardIpcEvent('ElectronWebContentsView.handleLogin')
 
 export const handleBrowserViewDestroyed = (id: any, ...args: readonly any[]) => {
   // TODO send to embeds worker?
