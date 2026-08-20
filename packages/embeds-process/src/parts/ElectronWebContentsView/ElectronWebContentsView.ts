@@ -28,6 +28,10 @@ export const cancelLogin = async (requestId: string) => {
   return ParentIpc.invoke('ElectronWebContentsView.cancelLogin', requestId)
 }
 
+export const click = async (id: any, selector: string) => {
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.click', id, selector)
+}
+
 export const resizeWebContentsView = async (id: any, ...args: readonly any[]) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.resizeBrowserView', id, ...args)
 }
@@ -62,9 +66,9 @@ export const insertCss = async (id: any, css: string) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.insertCss', id, css)
 }
 
-export const insertJavaScript = async (id: any, css: string) => {
+export const insertJavaScript = async (id: any, code: string, userGesture = false) => {
   // @ts-ignore
-  return ParentIpc.invoke('ElectronWebContentsViewFunctions.insertJavaScript', id, css)
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.insertJavaScript', id, code, userGesture)
 }
 
 export const show = async (id: any, ...args: readonly any[]) => {

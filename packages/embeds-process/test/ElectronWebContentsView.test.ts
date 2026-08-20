@@ -29,6 +29,18 @@ test('capturePage forwards to the main process', async () => {
   expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.capturePage', 12]])
 })
 
+test('insertJavaScript forwards the user gesture flag to the main process', async () => {
+  await ElectronWebContentsView.insertJavaScript(12, 'play()', true)
+
+  expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.insertJavaScript', 12, 'play()', true]])
+})
+
+test('click forwards the selector to the main process', async () => {
+  await ElectronWebContentsView.click(12, '.playButton')
+
+  expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.click', 12, '.playButton']])
+})
+
 test('hide forwards to the main process', async () => {
   await ElectronWebContentsView.hide(12)
 

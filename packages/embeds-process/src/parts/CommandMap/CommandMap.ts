@@ -14,6 +14,7 @@ export const commandMap = {
   'ElectronWebContentsView.backward': ElectronWebContents.backward,
   'ElectronWebContentsView.cancelLogin': ElectronWebContentsView.cancelLogin,
   'ElectronWebContentsView.capturePage': ElectronWebContentsView.capturePage,
+  'ElectronWebContentsView.click': ElectronWebContentsView.click,
   'ElectronWebContentsView.createWebContentsView': ElectronWebContentsView.createWebContentsView,
   'ElectronWebContentsView.disposeWebContentsView': ElectronWebContentsView.disposeWebContentsView,
   'ElectronWebContentsView.focus': ElectronWebContents.focus,
