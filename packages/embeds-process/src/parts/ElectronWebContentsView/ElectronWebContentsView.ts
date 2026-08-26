@@ -91,6 +91,8 @@ const forwardIpcEvent =
 
 export const handleDidNavigate = forwardIpcEvent('ElectronWebContentsView.handleDidNavigate')
 
+export const handlePageFaviconUpdated = forwardIpcEvent('ElectronWebContentsView.handlePageFaviconUpdated')
+
 export const handleTitleUpdated = forwardIpcEvent('ElectronWebContentsView.handleTitleUpdated')
 
 export const handleWillNavigate = forwardIpcEvent('ElectronWebContentsView.handleWillNavigate')
