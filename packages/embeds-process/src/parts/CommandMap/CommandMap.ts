@@ -8,6 +8,7 @@ export const commandMap = {
   'ElectronWebContents.handleContextMenu': ElectronWebContentsView.handleContextMenu,
   'ElectronWebContents.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
   'ElectronWebContents.handleLogin': ElectronWebContentsView.handleLogin,
+  'ElectronWebContents.handlePageFaviconUpdated': ElectronWebContentsView.handlePageFaviconUpdated,
   'ElectronWebContents.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
   'ElectronWebContents.handleWillNavigate': ElectronWebContentsView.handleWillNavigate,
   'ElectronWebContentsView.acceptLogin': ElectronWebContentsView.acceptLogin,
