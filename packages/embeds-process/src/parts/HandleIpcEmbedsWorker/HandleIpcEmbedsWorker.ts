@@ -14,7 +14,7 @@ export const targetMessagePort = async (messagePort: any, message: any) => {
   })
   // @ts-ignore
   const { ipc } = rpc
-  ipc.execute = CreateEmbedsWorkerCommandExecutor.createEmbedsWorkerCommandExecutor(ipc, CommandMapRef.commandMapRef)
+  ipc.execute = CreateEmbedsWorkerCommandExecutor.createEmbedsWorkerCommandExecutor(rpc, CommandMapRef.commandMapRef)
   ipc.addEventListener('close', HandleIpcClosed.handleIpcClosed)
   return rpc
 }
