@@ -1,16 +1,16 @@
 import { expect, jest, test } from '@jest/globals'
 import * as CreateEmbedsWorkerCommandExecutor from '../src/parts/CreateEmbedsWorkerCommandExecutor/CreateEmbedsWorkerCommandExecutor.ts'
 
-test('injects the ipc into createWebContentsView', async () => {
-  const ipc = {}
+test('injects the rpc into createWebContentsView', async () => {
+  const rpc = { ipc: {} }
   const createWebContentsView = jest.fn()
-  const execute = CreateEmbedsWorkerCommandExecutor.createEmbedsWorkerCommandExecutor(ipc, {
+  const execute = CreateEmbedsWorkerCommandExecutor.createEmbedsWorkerCommandExecutor(rpc, {
     'ElectronWebContentsView.createWebContentsView': createWebContentsView,
   })
 
   await execute('ElectronWebContentsView.createWebContentsView', 0, [])
 
-  expect(createWebContentsView).toHaveBeenCalledWith(ipc, 0, [])
+  expect(createWebContentsView).toHaveBeenCalledWith(rpc, 0, [])
 })
 
 test('forwards other commands unchanged', async () => {
