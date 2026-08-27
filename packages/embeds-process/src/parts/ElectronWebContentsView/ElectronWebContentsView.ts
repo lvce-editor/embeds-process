@@ -97,6 +97,8 @@ export const handleTitleUpdated = forwardIpcEvent('ElectronWebContentsView.handl
 
 export const handleWillNavigate = forwardIpcEvent('ElectronWebContentsView.handleWillNavigate')
 
+export const handleWindowOpen = forwardIpcEvent('ElectronWebContentsView.handleWindowOpen')
+
 export const handleContextMenu = forwardIpcEvent('ElectronWebContentsView.handleContextMenu')
 
 export const handleKeyBinding = forwardIpcEvent('ElectronWebContentsView.handleKeyBinding')

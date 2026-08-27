@@ -69,3 +69,13 @@ test('favicon updates are forwarded with the web contents id', () => {
   expect(send).toHaveBeenCalledWith('ElectronWebContentsView.handlePageFaviconUpdated', 12, ['https://example.com/favicon.png'])
   ElectronWebContentsViewIpcState.remove(12)
 })
+
+test('window open events are forwarded with the web contents id and disposition', () => {
+  const send = jest.fn()
+  ElectronWebContentsViewIpcState.add(12, { send })
+
+  ElectronWebContentsView.handleWindowOpen(12, 'https://example.com/docs', 'foreground-tab')
+
+  expect(send).toHaveBeenCalledWith('ElectronWebContentsView.handleWindowOpen', 12, 'https://example.com/docs', 'foreground-tab')
+  ElectronWebContentsViewIpcState.remove(12)
+})
