@@ -95,3 +95,15 @@ test('fallthrough keybindings are forwarded to the main process', async () => {
 
   expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.setFallthroughKeyBindings', 12, [2050, 3074]]])
 })
+
+test('setZoomLevel forwards the zoom level to the embedded web contents', async () => {
+  await ElectronWebContentsView.setZoomLevel(12, 0.5)
+
+  expect(state.invocations).toEqual([['ElectronWebContents.callFunction', 12, 'setZoomLevel', 0.5]])
+})
+
+test('toggleDevTools toggles developer tools for the embedded web contents', async () => {
+  await ElectronWebContentsView.toggleDevTools(12)
+
+  expect(state.invocations).toEqual([['ElectronWebContents.callFunction', 12, 'toggleDevTools']])
+})
