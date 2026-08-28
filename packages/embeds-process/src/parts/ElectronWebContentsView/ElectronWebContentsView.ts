@@ -48,6 +48,10 @@ export const setIframeSrcFallback = async (id: any, ...args: readonly any[]) => 
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.setIframeSrcFallback', id, ...args)
 }
 
+export const setAudioMuted = async (id: any, muted: boolean) => {
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.setAudioMuted', id, muted)
+}
+
 export const setFallthroughKeyBindings = async (id: any, ...args: readonly any[]) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.setFallthroughKeyBindings', id, ...args)
 }
