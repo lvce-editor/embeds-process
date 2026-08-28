@@ -32,6 +32,7 @@ export const commandMap = {
   'ElectronWebContentsView.openDevtools': ElectronWebContents.openDevtools,
   'ElectronWebContentsView.reload': ElectronWebContents.reload,
   'ElectronWebContentsView.resizeBrowserView': ElectronWebContentsView.resizeWebContentsView,
+  'ElectronWebContentsView.setAudioMuted': ElectronWebContentsView.setAudioMuted,
   'ElectronWebContentsView.setFallthroughKeyBindings': ElectronWebContentsView.setFallthroughKeyBindings,
   'ElectronWebContentsView.setIframeSrc': ElectronWebContentsView.setIframeSrc,
   'ElectronWebContentsView.setIframeSrcFallback': ElectronWebContentsView.setIframeSrcFallback,

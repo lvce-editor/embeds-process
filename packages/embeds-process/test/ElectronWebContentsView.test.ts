@@ -95,3 +95,9 @@ test('fallthrough keybindings are forwarded to the main process', async () => {
 
   expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.setFallthroughKeyBindings', 12, [2050, 3074]]])
 })
+
+test('setAudioMuted forwards the audio state to the main process', async () => {
+  await ElectronWebContentsView.setAudioMuted(12, true)
+
+  expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.setAudioMuted', 12, true]])
+})
