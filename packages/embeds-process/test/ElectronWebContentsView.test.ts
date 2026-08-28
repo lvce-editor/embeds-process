@@ -70,6 +70,16 @@ test('favicon updates are forwarded with the web contents id', () => {
   ElectronWebContentsViewIpcState.remove(12)
 })
 
+test('audio state changes are forwarded with the web contents id', () => {
+  const send = jest.fn()
+  ElectronWebContentsViewIpcState.add(12, { send })
+
+  ElectronWebContentsView.handleAudioStateChanged(12, true)
+
+  expect(send).toHaveBeenCalledWith('ElectronWebContentsView.handleAudioStateChanged', 12, true)
+  ElectronWebContentsViewIpcState.remove(12)
+})
+
 test('window open events are forwarded with the web contents id and disposition', () => {
   const send = jest.fn()
   ElectronWebContentsViewIpcState.add(12, { send })
@@ -94,6 +104,12 @@ test('fallthrough keybindings are forwarded to the main process', async () => {
   await ElectronWebContentsView.setFallthroughKeyBindings(12, [2050, 3074])
 
   expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.setFallthroughKeyBindings', 12, [2050, 3074]]])
+})
+
+test('setAudioMuted forwards the audio state to the main process', async () => {
+  await ElectronWebContentsView.setAudioMuted(12, true)
+
+  expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.setAudioMuted', 12, true]])
 })
 
 test('setZoomLevel forwards the zoom level to the embedded web contents', async () => {
