@@ -24,6 +24,14 @@ export const openDevtools = (webContentsId: any) => {
   return callFunction(webContentsId, 'openDevTools')
 }
 
+export const toggleDevTools = (webContentsId: any) => {
+  return callFunction(webContentsId, 'toggleDevTools')
+}
+
+export const setZoomLevel = (webContentsId: any, zoomLevel: number) => {
+  return callFunction(webContentsId, 'setZoomLevel', zoomLevel)
+}
+
 export const reload = (webContentsId: any) => {
   return callFunction(webContentsId, 'reload')
 }

@@ -37,7 +37,9 @@ export const commandMap = {
   'ElectronWebContentsView.setFallthroughKeyBindings': ElectronWebContentsView.setFallthroughKeyBindings,
   'ElectronWebContentsView.setIframeSrc': ElectronWebContentsView.setIframeSrc,
   'ElectronWebContentsView.setIframeSrcFallback': ElectronWebContentsView.setIframeSrcFallback,
+  'ElectronWebContentsView.setZoomLevel': ElectronWebContentsView.setZoomLevel,
   'ElectronWebContentsView.show': ElectronWebContentsView.show,
+  'ElectronWebContentsView.toggleDevTools': ElectronWebContentsView.toggleDevTools,
   'HandleElectronMessagePort.handleElectronMessagePort': HandleElectronMessagePort.handleElectronMessagePort,
   'Initialize.initialize': Initialize.initialize,
 }

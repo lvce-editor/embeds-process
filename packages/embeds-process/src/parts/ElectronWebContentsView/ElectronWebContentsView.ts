@@ -83,6 +83,14 @@ export const hide = async (id: any, ...args: readonly any[]) => {
   return ParentIpc.invoke('ElectronWebContentsViewFunctions.hide', id, ...args)
 }
 
+export const setZoomLevel = (id: any, zoomLevel: number) => {
+  return ElectronWebContents.setZoomLevel(id, zoomLevel)
+}
+
+export const toggleDevTools = (id: any) => {
+  return ElectronWebContents.toggleDevTools(id)
+}
+
 const forwardIpcEvent =
   (key: string) =>
   (id: any, ...args: readonly any[]) => {
