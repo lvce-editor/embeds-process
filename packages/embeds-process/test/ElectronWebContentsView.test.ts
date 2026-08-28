@@ -79,3 +79,19 @@ test('window open events are forwarded with the web contents id and disposition'
   expect(send).toHaveBeenCalledWith('ElectronWebContentsView.handleWindowOpen', 12, 'https://example.com/docs', 'foreground-tab')
   ElectronWebContentsViewIpcState.remove(12)
 })
+
+test('keybindings are forwarded with the web contents id', () => {
+  const send = jest.fn()
+  ElectronWebContentsViewIpcState.add(12, { send })
+
+  ElectronWebContentsView.handleKeyBinding(12, 2050)
+
+  expect(send).toHaveBeenCalledWith('ElectronWebContentsView.handleKeyBinding', 12, 2050)
+  ElectronWebContentsViewIpcState.remove(12)
+})
+
+test('fallthrough keybindings are forwarded to the main process', async () => {
+  await ElectronWebContentsView.setFallthroughKeyBindings(12, [2050, 3074])
+
+  expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.setFallthroughKeyBindings', 12, [2050, 3074]]])
+})

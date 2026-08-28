@@ -7,6 +7,7 @@ export const commandMap = {
   'ElectronWebContents.handleBrowserViewDestroyed': ElectronWebContentsView.handleBrowserViewDestroyed,
   'ElectronWebContents.handleContextMenu': ElectronWebContentsView.handleContextMenu,
   'ElectronWebContents.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,
+  'ElectronWebContents.handleKeyBinding': ElectronWebContentsView.handleKeyBinding,
   'ElectronWebContents.handleLogin': ElectronWebContentsView.handleLogin,
   'ElectronWebContents.handlePageFaviconUpdated': ElectronWebContentsView.handlePageFaviconUpdated,
   'ElectronWebContents.handleTitleUpdated': ElectronWebContentsView.handleTitleUpdated,
