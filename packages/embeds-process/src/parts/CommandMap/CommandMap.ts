@@ -4,6 +4,7 @@ import * as HandleElectronMessagePort from '../HandleElectronMessagePort/HandleE
 import * as Initialize from '../Initialize/Initialize.ts'
 
 export const commandMap = {
+  'ElectronWebContents.handleAudioStateChanged': ElectronWebContentsView.handleAudioStateChanged,
   'ElectronWebContents.handleBrowserViewDestroyed': ElectronWebContentsView.handleBrowserViewDestroyed,
   'ElectronWebContents.handleContextMenu': ElectronWebContentsView.handleContextMenu,
   'ElectronWebContents.handleDidNavigate': ElectronWebContentsView.handleDidNavigate,

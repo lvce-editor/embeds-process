@@ -89,6 +89,8 @@ const forwardIpcEvent =
     ipc.send(key, id, ...args)
   }
 
+export const handleAudioStateChanged = forwardIpcEvent('ElectronWebContentsView.handleAudioStateChanged')
+
 export const handleDidNavigate = forwardIpcEvent('ElectronWebContentsView.handleDidNavigate')
 
 export const handlePageFaviconUpdated = forwardIpcEvent('ElectronWebContentsView.handlePageFaviconUpdated')

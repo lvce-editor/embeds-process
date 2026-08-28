@@ -4,6 +4,7 @@ import * as ElectronWebContentsView from '../src/parts/ElectronWebContentsView/E
 
 test('commandMap', () => {
   expect(typeof CommandMap.commandMap).toBe('object')
+  expect(CommandMap.commandMap['ElectronWebContents.handleAudioStateChanged']).toBe(ElectronWebContentsView.handleAudioStateChanged)
   expect(CommandMap.commandMap['ElectronWebContents.handleKeyBinding']).toBe(ElectronWebContentsView.handleKeyBinding)
   expect(CommandMap.commandMap['ElectronWebContents.handleWindowOpen']).toBe(ElectronWebContentsView.handleWindowOpen)
 })

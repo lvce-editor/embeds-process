@@ -70,6 +70,16 @@ test('favicon updates are forwarded with the web contents id', () => {
   ElectronWebContentsViewIpcState.remove(12)
 })
 
+test('audio state changes are forwarded with the web contents id', () => {
+  const send = jest.fn()
+  ElectronWebContentsViewIpcState.add(12, { send })
+
+  ElectronWebContentsView.handleAudioStateChanged(12, true)
+
+  expect(send).toHaveBeenCalledWith('ElectronWebContentsView.handleAudioStateChanged', 12, true)
+  ElectronWebContentsViewIpcState.remove(12)
+})
+
 test('window open events are forwarded with the web contents id and disposition', () => {
   const send = jest.fn()
   ElectronWebContentsViewIpcState.add(12, { send })
