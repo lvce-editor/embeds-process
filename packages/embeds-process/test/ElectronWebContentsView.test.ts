@@ -80,14 +80,26 @@ test('audio state changes are forwarded with the web contents id', () => {
   ElectronWebContentsViewIpcState.remove(12)
 })
 
-test('window open events are forwarded with the web contents id and disposition', () => {
+test('window open events associate and forward the child web contents id', () => {
   const send = jest.fn()
   ElectronWebContentsViewIpcState.add(12, { send })
 
-  ElectronWebContentsView.handleWindowOpen(12, 'https://example.com/docs', 'foreground-tab')
+  ElectronWebContentsView.handleWindowOpen(12, 13, 'https://example.com/docs', 'foreground-tab')
 
-  expect(send).toHaveBeenCalledWith('ElectronWebContentsView.handleWindowOpen', 12, 'https://example.com/docs', 'foreground-tab')
+  expect(send).toHaveBeenCalledWith('ElectronWebContentsView.handleWindowOpen', 12, 13, 'https://example.com/docs', 'foreground-tab')
+  expect(ElectronWebContentsViewIpcState.get(13)).toEqual({ send })
   ElectronWebContentsViewIpcState.remove(12)
+  ElectronWebContentsViewIpcState.remove(13)
+})
+
+test('destroyed events are forwarded and remove the web contents association', () => {
+  const send = jest.fn()
+  ElectronWebContentsViewIpcState.add(13, { send })
+
+  ElectronWebContentsView.handleBrowserViewDestroyed(13)
+
+  expect(send).toHaveBeenCalledWith('ElectronWebContentsView.handleBrowserViewDestroyed', 13)
+  expect(ElectronWebContentsViewIpcState.get(13)).toBeUndefined()
 })
 
 test('keybindings are forwarded with the web contents id', () => {
