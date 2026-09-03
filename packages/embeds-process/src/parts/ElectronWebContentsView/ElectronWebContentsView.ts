@@ -111,7 +111,14 @@ export const handleTitleUpdated = forwardIpcEvent('ElectronWebContentsView.handl
 
 export const handleWillNavigate = forwardIpcEvent('ElectronWebContentsView.handleWillNavigate')
 
-export const handleWindowOpen = forwardIpcEvent('ElectronWebContentsView.handleWindowOpen')
+export const handleWindowOpen = (id: any, childId: any, url: string, disposition: string) => {
+  const ipc = ElectronWebContentsViewIpcState.get(id)
+  if (!ipc) {
+    return
+  }
+  ElectronWebContentsViewIpcState.add(childId, ipc)
+  ipc.send('ElectronWebContentsView.handleWindowOpen', id, childId, url, disposition)
+}
 
 export const handleContextMenu = forwardIpcEvent('ElectronWebContentsView.handleContextMenu')
 
@@ -119,6 +126,11 @@ export const handleKeyBinding = forwardIpcEvent('ElectronWebContentsView.handleK
 
 export const handleLogin = forwardIpcEvent('ElectronWebContentsView.handleLogin')
 
-export const handleBrowserViewDestroyed = (id: any, ...args: readonly any[]) => {
-  // TODO send to embeds worker?
+export const handleBrowserViewDestroyed = (id: any) => {
+  const ipc = ElectronWebContentsViewIpcState.get(id)
+  ElectronWebContentsViewIpcState.remove(id)
+  if (!ipc) {
+    return
+  }
+  ipc.send('ElectronWebContentsView.handleBrowserViewDestroyed', id)
 }
