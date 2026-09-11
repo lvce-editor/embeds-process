@@ -134,3 +134,7 @@ export const handleBrowserViewDestroyed = (id: any) => {
   }
   ipc.send('ElectronWebContentsView.handleBrowserViewDestroyed', id)
 }
+
+export const pressKey = (id: number, keyCode: string, modifiers: string[]): Promise<void> => {
+  return ParentIpc.invoke('ElectronWebContentsViewFunctions.pressKey', id, keyCode, modifiers)
+}

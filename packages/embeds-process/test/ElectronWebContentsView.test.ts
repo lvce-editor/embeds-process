@@ -135,3 +135,8 @@ test('toggleDevTools toggles developer tools for the embedded web contents', asy
 
   expect(state.invocations).toEqual([['ElectronWebContents.callFunction', 12, 'toggleDevTools']])
 })
+
+test('pressKey forwards native key input to the main process', async () => {
+  await ElectronWebContentsView.pressKey(12, 'L', ['shift'])
+  expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.pressKey', 12, 'L', ['shift']]])
+})
