@@ -31,6 +31,7 @@ export const commandMap = {
   'ElectronWebContentsView.insertJavaScript': ElectronWebContentsView.insertJavaScript,
   'ElectronWebContentsView.inspectElement': ElectronWebContents.inspectElement,
   'ElectronWebContentsView.openDevtools': ElectronWebContents.openDevtools,
+  'ElectronWebContentsView.pressKey': ElectronWebContentsView.pressKey,
   'ElectronWebContentsView.reload': ElectronWebContents.reload,
   'ElectronWebContentsView.resizeBrowserView': ElectronWebContentsView.resizeWebContentsView,
   'ElectronWebContentsView.setAudioMuted': ElectronWebContentsView.setAudioMuted,
