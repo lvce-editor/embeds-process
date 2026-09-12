@@ -4,12 +4,12 @@ import * as ElectronWebContents from '../ElectronWebContents/ElectronWebContents
 import * as ElectronWebContentsViewIpcState from '../ElectronWebContentsViewIpcState/ElectronWebContentsViewIpcState.ts'
 import * as ParentIpc from '../MainProcess/MainProcess.ts'
 
-export const createWebContentsView = async (ipc: any, restoreId: any, fallthroughKeyBindings: any) => {
+export const createWebContentsView = async (ipc: any, restoreId: any, fallthroughKeyBindings: any, windowId = 0) => {
   Assert.number(restoreId)
+  Assert.number(windowId)
   // TODO race condition: ipc can be disposed while webcontents are being created
-  const webContentsId = await ParentIpc.invoke('ElectronWebContentsView.createWebContentsView', restoreId)
+  const webContentsId = await ParentIpc.invoke('ElectronWebContentsView.createWebContentsView', restoreId, windowId)
   ElectronWebContentsViewIpcState.add(webContentsId, ipc)
-  // TODO get window id from renderer worker
   await ParentIpc.invoke('ElectronWebContentsView.attachEventListeners', webContentsId)
   await ParentIpc.invoke('ElectronWebContentsViewFunctions.setBackgroundColor', webContentsId, 'white')
   return webContentsId
