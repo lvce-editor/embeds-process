@@ -10,7 +10,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "node packages/build/src/build.js",
+    "build": "node packages/build/src/build.ts",
     "lint": "eslint .",
     "test": "npm test --workspaces --if-present",
     "type-check": "tsc -b"
