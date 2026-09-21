@@ -4,11 +4,36 @@ import * as ElectronWebContents from '../ElectronWebContents/ElectronWebContents
 import * as ElectronWebContentsViewIpcState from '../ElectronWebContentsViewIpcState/ElectronWebContentsViewIpcState.ts'
 import * as ParentIpc from '../MainProcess/MainProcess.ts'
 
+const detachedRpcs = new WeakSet<object>()
+
+// Only the retiring connection may detach its views. Removing the routing
+// entries also prevents its later close event from destroying reattached views.
+export const detachForHotReload = (ipc: object): readonly number[] => {
+  detachedRpcs.add(ipc)
+  const ids: number[] = []
+  for (const [id, owner] of ElectronWebContentsViewIpcState.getAll()) {
+    if (owner !== ipc) {
+      continue
+    }
+    ElectronWebContentsViewIpcState.remove(id)
+    ids.push(Number(id))
+  }
+  return ids
+}
+
 export const createWebContentsView = async (ipc: any, restoreId: any, fallthroughKeyBindings: any, windowId = 0) => {
   Assert.number(restoreId)
   Assert.number(windowId)
-  // TODO race condition: ipc can be disposed while webcontents are being created
+  if (detachedRpcs.has(ipc)) {
+    throw new Error('Browser connection is restarting')
+  }
   const webContentsId = await ParentIpc.invoke('ElectronWebContentsView.createWebContentsView', restoreId, windowId)
+  if (detachedRpcs.has(ipc)) {
+    if (webContentsId !== restoreId) {
+      await ParentIpc.invoke('ElectronWebContentsView.disposeWebContentsView', webContentsId)
+    }
+    throw new Error('Browser connection is restarting')
+  }
   ElectronWebContentsViewIpcState.add(webContentsId, ipc)
   await ParentIpc.invoke('ElectronWebContentsView.attachEventListeners', webContentsId)
   await ParentIpc.invoke('ElectronWebContentsViewFunctions.setBackgroundColor', webContentsId, 'white')

@@ -32,3 +32,13 @@ test('throws for an unknown command', () => {
 
   expect(() => execute('Unknown.command')).toThrow(new Error('Command not found Unknown.command'))
 })
+
+test('hot reload receives its authenticated connection rather than a caller-supplied owner', () => {
+  const rpc = { ipc: {} }
+  const detach = jest.fn<(rpc: object) => number[]>(() => [1, 3])
+  const execute = CreateEmbedsWorkerCommandExecutor.createEmbedsWorkerCommandExecutor(rpc, {
+    'ElectronWebContentsView.detachForHotReload': detach,
+  })
+  expect(execute('ElectronWebContentsView.detachForHotReload')).toEqual([1, 3])
+  expect(detach).toHaveBeenCalledWith(rpc)
+})
