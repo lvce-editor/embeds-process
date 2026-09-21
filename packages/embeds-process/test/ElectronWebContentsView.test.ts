@@ -140,3 +140,33 @@ test('pressKey forwards native key input to the main process', async () => {
   await ElectronWebContentsView.pressKey(12, 'L', ['shift'])
   expect(state.invocations).toEqual([['ElectronWebContentsViewFunctions.pressKey', 12, 'L', ['shift']]])
 })
+
+test('a detached worker cannot create new views', async () => {
+  const rpc = {}
+  ElectronWebContentsView.detachForHotReload(rpc)
+  await expect(ElectronWebContentsView.createWebContentsView(rpc, 0, [], 7)).rejects.toThrow('restarting')
+  expect(state.invocations).toEqual([])
+})
+
+test.each([0, 42])('a view creation finishing after detach does not recreate an old IPC mapping (restore ID %s)', async (restoreId) => {
+  const pending = Promise.withResolvers<number>()
+  const invoke = jest.fn<(method: string, ...args: readonly any[]) => Promise<any>>(async (method) => {
+    if (method === 'ElectronWebContentsView.createWebContentsView') return pending.promise
+  })
+  MainProcess.set(MockRpc.create({ commandMap: {}, invoke }))
+  const rpc = {}
+  try {
+    const creating = ElectronWebContentsView.createWebContentsView(rpc, restoreId, [], 7)
+    ElectronWebContentsView.detachForHotReload(rpc)
+    pending.resolve(42)
+    await expect(creating).rejects.toThrow('restarting')
+    expect(ElectronWebContentsViewIpcState.get(42)).toBeUndefined()
+    const expectedCalls = [['ElectronWebContentsView.createWebContentsView', restoreId, 7]]
+    if (restoreId === 0) {
+      expectedCalls.push(['ElectronWebContentsView.disposeWebContentsView', 42])
+    }
+    expect(invoke.mock.calls).toEqual(expectedCalls)
+  } finally {
+    MainProcess.set(mockRpc)
+  }
+})

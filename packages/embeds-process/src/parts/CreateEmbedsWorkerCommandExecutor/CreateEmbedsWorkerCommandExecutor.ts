@@ -10,7 +10,7 @@ export const createEmbedsWorkerCommandExecutor = (rpc: any, commandMap: CommandM
     if (!command) {
       throw new Error(`Command not found ${method}`)
     }
-    if (method === createWebContentsViewCommand) {
+    if (method === createWebContentsViewCommand || method === 'ElectronWebContentsView.detachForHotReload') {
       return command(rpc, ...params)
     }
     return command(...params)
